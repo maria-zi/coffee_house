@@ -27,7 +27,7 @@
 
 1. Вывести все продукты, имеющиеся в наличии:
 
-SELECT * FROM menu WHERE stock > 0;
+SELECT * FROM menu;
 
 2. Получить суммарное количество поставок молока за каждую дату поставки из таблицы `supply`. 
 
@@ -36,15 +36,6 @@ FROM supply AS s
 JOIN ingredients AS i ON s.sup_ingredient = i.ing_id
 WHERE ing_name = 'milk'
 GROUP BY sup_date, ing_name, sup_quantity;
-
-3. Найти клиентов, совершивших заказы на сумму более 1000 рублей за последний месяц
-
-SELECT c.name, SUM(ol.total_amount) AS total_spent
-FROM clients c
-JOIN order_list ol ON c.client_id = ol.client_id
-WHERE ol.order_date >= current_date - interval '1 month'
-GROUP BY c.name
-HAVING SUM(ol.total_amount) > 1000;
 
 ## Пример процедуры
 
