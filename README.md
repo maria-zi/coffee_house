@@ -26,19 +26,21 @@
 ## Примеры запросов
 
 1. Вывести все продукты, имеющиеся в наличии:
-
+```sql
 SELECT * FROM menu;
-
+```
 2. Получить суммарное количество поставок молока за каждую дату поставки из таблицы `supply`. 
 
+```sql
 SELECT sup_date, ing_name, sup_quantity, SUM(sup_quantity) AS sum
 FROM supply AS s
 JOIN ingredients AS i ON s.sup_ingredient = i.ing_id
 WHERE ing_name = 'milk'
 GROUP BY sup_date, ing_name, sup_quantity;
+```
 
 ## Пример процедуры
-
+```sql
 CREATE PROCEDURE insert_order(a TIMESTAMP, b integer, c integer, d integer, e integer, f integer, g integer, h integer, i integer)
 LANGUAGE SQL
 AS $$
@@ -47,7 +49,7 @@ INSERT INTO order_list (ord_id, prod_id, prod_quantity) VALUES (c, d, e); --дл
 INSERT INTO order_staff (id_ord, id_staff) VALUES (f, g); -- для добавления бариста
 INSERT INTO order_staff (id_ord, id_staff) VALUES (h, i); -- для добавления клинера
 $$;
-
+```
 Эта SQL-процедура предназначена для добавления нового заказа в базу данных. Она принимает следующие параметры:
 
 - `a`: дата и время заказа (`TIMESTAMP`);
